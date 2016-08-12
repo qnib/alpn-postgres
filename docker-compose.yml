@@ -1,0 +1,27 @@
+version: '2'
+services:
+  consul:
+    extends:
+      file: base.yml
+      service: base
+    image: qnib/alpn-consul
+    hostname: psql-consul
+    container_name: psql-consul
+    ports:
+     - 8500:8500
+    environment:
+     - CONSUL_BOOTSTRAP=true
+
+  postgres:
+    extends:
+      file: base.yml
+      service: client
+    image: qnib/alpn-postgres
+    hostname: postgres
+    container_name: postgres
+    ports:
+     - 5432:5432
+    
+networks:
+  psql-net:
+    driver: bridge

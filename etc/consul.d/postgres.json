@@ -1,0 +1,10 @@
+{
+  "service": {
+    "name": "psql",
+    "port": 5432,
+    "check": {
+      "script": "nmap 127.0.0.1 -PN -p postgresql | grep open",
+      "interval": "5s"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+version: '2'
+services:
+  base:
+    networks:
+     - psql-net
+    environment:
+     - DC_NAME=psql-dc
+
+  client:
+    extends:
+      file: base.yml
+      service: base
+    dns:
+      - psql-consul
+    environment:
+     - CONSUL_CLUSTER_IPS=psql-consul
